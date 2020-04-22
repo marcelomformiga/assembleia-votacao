@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="1" author="formiga">
+        <createTable tableName="associado">
+            <column name="id" type="BIGINT(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="nome" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2" author="formiga">
+        <createTable tableName="pauta">
+            <column name="id" type="BIGINT(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="descricao" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    
+    <changeSet id="3" author="formiga">
+        <createTable tableName="sessao">
+            <column name="id" type="BIGINT(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="data_hora_inicio" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="data_hora_fim" type="TIMESTAMP">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_votos_sim" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="total_votos_nao" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+            <column name="pauta_id" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <dropDefaultValue tableName="sessao" columnName="data_hora_inicio" columnDataType="TIMESTAMP"/>
+        <dropDefaultValue tableName="sessao" columnName="data_hora_fim" columnDataType="TIMESTAMP"/>
+    </changeSet>
+    
+    <changeSet id="4" author="formiga">
+        <createTable tableName="sessao_votantes">
+            <column name="id" type="BIGINT(20)" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="associado_id" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="sessao_id" type="BIGINT(20)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
